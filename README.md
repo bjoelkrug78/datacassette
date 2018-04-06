@@ -29,6 +29,21 @@ For the algorithm the detection is then as follows:
 - to make detection more robust we count something that has less or equal than 7 samples between two zero crossings as a 1 and something with 8 or more samples between two zero crossings as a 0
 - the algorithm keeps counting sequences of ones or zeros and only flushes them out once a zero follows a one sequence or a one follows a zero sequence
 
+YOUTUBE
+-------
+I have uploaded some short video clips to youtube which show the following:
+
+#1 Just showing the playback of my recorded data on my tape deck (left channel only) 
+https://www.youtube.com/watch?v=IJ5VDKV9qbw 
+
+#2 Showing the original .wav file that was created with datacassettewriter.c (https://github.com/bjoelkrug78/datacassette) and was used to record onto the ferro type audio tape on my tape deck
+https://www.youtube.com/watch?v=9A1D3Q4va-w
+
+#3 Showing the resulting .wav file that was recorded from my tape deck with my Windows laptop using the microphone input and audacity to sample
+https://www.youtube.com/watch?v=FkQzJ6LRdTA
+
+On both #2 and #3 you can easily decode the zeros and ones using your eyes (and so does the datacassettereader.c software)
+
 NEXT STEPS
 ----------
 - get the algorithm to lock onto frames so that it can get back in sync after a long burst error
