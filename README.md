@@ -9,11 +9,16 @@ CURRENT STATE
 Currently I am encoding a random bitstream at 9600 bps to only one channel of the stereo tape.
 Experiments have shown that there was no biterror for about 10 minutes of recording and the only corruption seen was due to a system sound that corrupted about 3000 bits of data in between. Unfortunately the algorithm didn't recover from this and the following frames were all corrupted.
 
+Update (November 30th, 2018)
+I have encoded a random bitstream at 9600 bps on one channel with 16384 frames consisting of 1024 bits of data, 32 bits of header, 32 bits of trailer, totalling 17,825,792 bits of data, with 16,777,216 bits of actual net data.
+Writing this to tape took about 31 minutes. Reading it back and decoding it revealed a total of 5 single bit errors, whereas the first bit error was incorrectly attributed to the first header, 2 of them were close in one single frame and the other 2 were single biterrors in far apart frames. Next step is to encode data on both channels as I am now using the Line-In input which is stereo.
+This should give me 19200 bps datarate.
+
 HOW IS THE DATA ENCODED
 -----------------------
-In datacassettewriter.c a random sequence of zeros and ones is created. This random sequence is packaged into frames which include an 8 bit header, then 1024 bits of random data and followed by an 8 bit trailer. Each frame looks like this
+In datacassettewriter.c a random sequence of zeros and ones is created. This random sequence is packaged into frames which include an 32 bit header, then 1024 bits of random data and followed by an 32 bit trailer. Each frame looks like this
 
-11010010 xxxxxxxxxxxxxxxx 00101101
+32x1     xxxxxxxxxxxxxxxx 32x0
 header   1024 random bits trailer  
 
 The current default is 1024 random bits per frame and it creates a total of 8k (8192) frames, resulting in 8 Megabits or 512 Kilobits of data.
